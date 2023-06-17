@@ -4,6 +4,8 @@ import 'package:consume_api_kel_9/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../pages/post_page.dart';
+
 class AppRoutes {
   static const home = "home";
   static const post = "post";
@@ -16,8 +18,6 @@ class AppRoutes {
       child: HomePage(),
     );
   }
-
-
 
   static Page _addPostPageBuilder(BuildContext context, GoRouterState state) {
     return const MaterialPage(
@@ -33,6 +33,14 @@ class AppRoutes {
     );
   }
 
+  static Page _postPageBuilder(BuildContext context, GoRouterState state) {
+    return MaterialPage(
+      child: PostPage(
+        post: state.extra as Post,
+      ),
+    );
+  }
+
   static GoRouter goRouter = GoRouter(
     initialLocation: "/home",
     routes: [
@@ -41,7 +49,11 @@ class AppRoutes {
           path: "/home",
           pageBuilder: _homePageBuilder,
           routes: [
-            
+            GoRoute(
+              name: post,
+              path: "post",
+              pageBuilder: _postPageBuilder,
+            ),
             GoRoute(
               name: addPost,
               path: "add-post",

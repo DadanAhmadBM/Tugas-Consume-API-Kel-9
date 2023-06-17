@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:consume_api_kel_9/models/post.dart';
 import 'package:consume_api_kel_9/services/post_service.dart';
 
+import '../models/comment.dart';
 
 class PostController {
   Future<List<Post>> fetchAll() async {
@@ -23,7 +24,21 @@ class PostController {
     });
   }
 
-
+  Future<List<Comment>> fetchComments(int id) async {
+    return await PostService().fetchComments(id).then((res) {
+      if (res.statusCode == HttpStatus.ok) {
+        var jsonData = jsonDecode(res.body);
+        return List.generate(
+          jsonData.length,
+          (index) => Comment.fromMap(
+            jsonData[index],
+          ),
+        );
+      } else {
+        throw Exception();
+      }
+    });
+  }
 
   Future<bool> delete(int id) async {
     return await PostService().delete(id).then((res) {
