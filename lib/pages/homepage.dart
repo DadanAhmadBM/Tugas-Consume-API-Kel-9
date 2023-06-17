@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:consume_api_kel_9/controller/post_controller.dart';
 import 'package:consume_api_kel_9/models/post.dart';
+import 'package:consume_api_kel_9/pages/todo_page.dart';
 import 'package:consume_api_kel_9/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -136,6 +137,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
         ),
+        TodoPage(),
       ]),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,

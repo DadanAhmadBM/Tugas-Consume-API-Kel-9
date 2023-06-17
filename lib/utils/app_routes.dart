@@ -1,6 +1,7 @@
 import 'package:consume_api_kel_9/models/post.dart';
 import 'package:consume_api_kel_9/pages/add_post_page.dart';
 import 'package:consume_api_kel_9/pages/homepage.dart';
+import 'package:consume_api_kel_9/pages/todo_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -22,6 +23,12 @@ class AppRoutes {
   static Page _addPostPageBuilder(BuildContext context, GoRouterState state) {
     return const MaterialPage(
       child: AddPostPage(),
+    );
+  }
+
+  static Page _todoPageBuilder(BuildContext context, GoRouterState state) {
+    return const MaterialPage(
+      child: TodoPage(),
     );
   }
 
@@ -65,6 +72,11 @@ class AppRoutes {
               pageBuilder: _editPostPageBuilder,
             ),
           ]),
+      GoRoute(
+        name: todo,
+        path: "/todo",
+        pageBuilder: _todoPageBuilder,
+      ),
     ],
   );
 }
